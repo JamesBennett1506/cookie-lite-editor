@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Lite Editor</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🍪 Cookie Lite</h1>
+      <span class="domain-badge" id="current-domain">Loading...</span>
+    </header>
+
+    <!-- Action Bar -->
+    <div class="action-bar">
+      <button id="refresh-btn" class="btn btn-primary">↻ Refresh</button>
+      <button id="add-btn" class="btn btn-success">+ New Cookie</button>
+      <div class="btn-group">
+        <button id="export-btn" class="btn">⬇ Export</button>
+        <button id="import-btn" class="btn">⬆ Import</button>
+      </div>
+    </div>
+
+    <!-- Cookie Table -->
+    <div class="table-container">
+      <table id="cookie-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Value</th>
+            <th>Domain</th>
+            <th>Path</th>
+            <th>Expires</th>
+            <th>Secure</th>
+            <th>HttpOnly</th>
+            <th>SameSite</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="cookie-list">
+          <tr>
+            <td colspan="9" class="loading">Loading cookies...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Status Messages -->
+    <div id="status-message" class="status"></div>
+  </div>
+
+  <!-- Edit Modal -->
+  <div id="cookie-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modal-title">Edit Cookie</h2>
+      <form id="cookie-form">
+        <input type="hidden" id="edit-original-name">
+        <input type="hidden" id="edit-original-domain">
+        <input type="hidden" id="edit-original-path">
+        
+        <div class="form-group">
+          <label for="edit-name">Name *</label>
+          <input type="text" id="edit-name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="edit-value">Value</label>
+          <input type="text" id="edit-value">
+        </div>
+        
+        <div class="form-group">
+          <label for="edit-domain">Domain</label>
+          <input type="text" id="edit-domain" placeholder="e.g., .example.com">
+        </div>
+        
+        <div class="form-group">
+          <label for="edit-path">Path</label>
+          <input type="text" id="edit-path" value="/">
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="edit-expires">Expires</label>
+            <input type="datetime-local" id="edit-expires">
+            <small>Leave empty for session</small>
+          </div>
+          
+          <div class="form-group half">
+            <label for="edit-samesite">SameSite</label>
+            <select id="edit-samesite">
+              <option value="unspecified">Unspecified</option>
+              <option value="no_restriction">None</option>
+              <option value="lax">Lax</option>
+              <option value="strict">Strict</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="checkbox-group">
+          <label>
+            <input type="checkbox" id="edit-secure"> Secure
+          </label>
+          <label>
+            <input type="checkbox" id="edit-httponly" disabled> HttpOnly (read-only)
+          </label>
+          <span class="tooltip">⚠️ HttpOnly cookies cannot be modified via extension</span>
+        </div>
+        
+        <div class="form-actions">
+          <button type="submit" id="save-cookie-btn" class="btn btn-primary">Save Cookie</button>
+          <button type="button" id="delete-cookie-btn" class="btn btn-danger">Delete</button>
+          <button type="button" id="cancel-modal-btn" class="btn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Cookie Lite Editor",
+  "version": "1.0.0",
+  "description": "Simple, clean, and reliable cookie editor for Microsoft Edge – create, edit, delete, import, export",
+  "author": "Your Name",
+  "homepage_url": "https://your-site.com",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Cookie Lite Editor"
+  },
+  "permissions": [
+    "cookies",
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "minimum_chrome_version": "88",
+  "minimum_edge_version": "88"
+}

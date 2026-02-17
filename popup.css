@@ -1,0 +1,331 @@
+/* Base - Edge Fluent Design inspired */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9f9f9;
+  --text-primary: #1e1e1e;
+  --text-secondary: #5e5e5e;
+  --border-color: #e1e1e1;
+  --accent-color: #0078d4;
+  --accent-hover: #106ebe;
+  --success-color: #107c10;
+  --danger-color: #d13438;
+  --warning-color: #ff8c00;
+  --table-header-bg: #f0f0f0;
+  --table-row-hover: #f5f5f5;
+  --modal-overlay: rgba(0, 0, 0, 0.5);
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #1e1e1e;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #c8c8c8;
+    --border-color: #3b3b3b;
+    --table-header-bg: #2d2d2d;
+    --table-row-hover: #3b3b3b;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Force fixed popup size – no media query interference */
+html, body {
+  width: 800px;
+  height: 600px;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--accent-color);
+  margin: 0;
+}
+
+.domain-badge {
+  background-color: var(--bg-secondary);
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Action Bar */
+.action-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.btn {
+  padding: 6px 16px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn:hover {
+  background-color: var(--bg-secondary);
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn-success {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+  color: white;
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  border-color: var(--danger-color);
+  color: white;
+}
+
+.btn-group {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+/* Table */
+.table-container {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  min-height: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+th {
+  background-color: var(--table-header-bg);
+  padding: 10px 8px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+td {
+  padding: 8px;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+  word-break: break-word;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+tr:hover {
+  background-color: var(--table-row-hover);
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-secondary);
+}
+
+/* Action buttons in table */
+.edit-btn, .delete-btn {
+  padding: 4px 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.edit-btn:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--modal-overlay);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: var(--bg-primary);
+  border-radius: 8px;
+  padding: 24px;
+  width: 500px;
+  max-width: 90%;
+  max-height: 80%;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: var(--shadow);
+}
+
+.close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.close:hover {
+  color: var(--text-primary);
+}
+
+/* Form */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.half {
+  flex: 1;
+}
+
+label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+input[type="text"],
+input[type="datetime-local"],
+select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.checkbox-group {
+  margin-bottom: 20px;
+}
+
+.checkbox-group label {
+  display: inline-block;
+  margin-right: 16px;
+}
+
+.tooltip {
+  font-size: 11px;
+  color: var(--warning-color);
+  margin-left: 8px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+/* Status message */
+.status {
+  margin-top: 12px;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  display: none;
+  flex-shrink: 0;
+}
+
+.status.success {
+  background-color: rgba(16, 124, 16, 0.1);
+  color: var(--success-color);
+  border: 1px solid var(--success-color);
+  display: block;
+}
+
+.status.error {
+  background-color: rgba(209, 52, 56, 0.1);
+  color: var(--danger-color);
+  border: 1px solid var(--danger-color);
+  display: block;
+}
