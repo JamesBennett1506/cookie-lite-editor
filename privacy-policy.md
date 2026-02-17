@@ -15,4 +15,4 @@ Data Sharing
 We do not share any data with third parties. No analytics, tracking, or external services are used.
 
 Contact
-If you have questions, contact: your-email@example.com
+If you have questions, contact: jamesbennett1506@outlook.com
